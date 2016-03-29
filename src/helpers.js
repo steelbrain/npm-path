@@ -7,7 +7,7 @@ import FS from 'fs'
 import memoize from 'sb-memoize'
 import promisify from 'sb-promisify'
 
-const access = promisify(FS.access, false)
+const access = promisify(FS.access)
 
 function find(directory: string, name: string | Array<string>): Array<string> {
   const names = [].concat(name)
@@ -48,9 +48,12 @@ async function findAsync(directory: string, name: string | Array<string>): Promi
     }
     for (const fileName of names) {
       const filePath = Path.join(currentDir, fileName)
-      if (await access(FS.R_OK, filePath)) {
+      try {
+        await access(filePath, FS.R_OK)
         matched.push(filePath)
         break
+      } catch (_) {
+        // Do nothing
       }
     }
     chunks.pop()
