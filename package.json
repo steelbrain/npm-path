@@ -1,0 +1,34 @@
+{
+  "name": "sb-npm-path",
+  "version": "0.0.0",
+  "description": "Get PATH of your node runtime and modules",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "apm test",
+    "compile": "ucompiler go",
+    "lint": "eslint .",
+    "watch": "ucompiler watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/steelbrain/npm-path.git"
+  },
+  "keywords": [
+    "memoize"
+  ],
+  "author": "steelbrain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steelbrain/npm-path/issues"
+  },
+  "homepage": "https://github.com/steelbrain/npm-path#readme",
+  "devDependencies": {
+    "eslint": "^2.5.0",
+    "babel-eslint": "^6.0.0",
+    "babel-preset-steelbrain": "^2.0.1",
+    "eslint-config-airbnb": "^6.0.2",
+    "eslint-plugin-react": "^4.2.1",
+    "ucompiler": "^3.1.8",
+    "ucompiler-plugin-babel": "^3.1.1"
+  }
+}
