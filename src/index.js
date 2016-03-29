@@ -7,7 +7,7 @@ import { find, findAsync } from './helpers'
 
 const SEPARATOR = process.platform === 'win32' ? ';' : ':'
 
-function getPATH(currentDirectory: ?string = null) {
+function getPATH(currentDirectory: ?string = null): string {
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
@@ -15,7 +15,7 @@ function getPATH(currentDirectory: ?string = null) {
   return entries.join(SEPARATOR)
 }
 
-async function getPATHAsync(currentDirectory: ?string = null) {
+async function getPATHAsync(currentDirectory: ?string = null): Promise<string> {
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
