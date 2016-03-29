@@ -25,3 +25,7 @@ async function getPATHAsync(currentDirectory: ?string = null) {
 
 module.exports = getPATH
 module.exports.async = getPATHAsync
+module.exports.clearCache = function() {
+  find.__sb_cache = {}
+  findAsync.__sb_cache = {}
+}
