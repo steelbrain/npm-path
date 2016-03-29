@@ -23,10 +23,10 @@ export { clearCache, getPATHAsync as async }
 ## Examples
 ```js
 import { exec } from 'sb-exec'
-import NPMPath from 'npm-path'
+import npmPath from 'npm-path'
 
 export default async function run() {
-  const PATH = await NPMPath.async(__dirname)
+  const PATH = await npmPath.async(__dirname)
   return await exec('mocha', { env: { PATH } })
 }
 ```
