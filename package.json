@@ -30,5 +30,9 @@
     "eslint-plugin-react": "^4.2.1",
     "ucompiler": "^3.1.8",
     "ucompiler-plugin-babel": "^3.1.1"
+  },
+  "dependencies": {
+    "sb-memoize": "^1.0.1",
+    "sb-promisify": "^1.2.0"
   }
 }
