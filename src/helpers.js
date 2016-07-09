@@ -1,5 +1,3 @@
-'use strict'
-
 /* @flow */
 
 import Path from 'path'
@@ -64,5 +62,5 @@ async function findAsync(directory: string, name: string | Array<string>): Promi
 
 module.exports = {
   find: memoize(find),
-  findAsync: memoize(findAsync, { async: true })
+  findAsync: memoize(findAsync, { async: true }),
 }

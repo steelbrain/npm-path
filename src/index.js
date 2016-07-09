@@ -1,5 +1,3 @@
-'use strict'
-
 /* @flow */
 
 import Path from 'path'
@@ -7,7 +5,8 @@ import { find, findAsync } from './helpers'
 
 const SEPARATOR = process.platform === 'win32' ? ';' : ':'
 
-function getPATH(currentDirectory: ?string = null): string {
+function getPATH(givenCurrentDirectory: ?string = null): string {
+  let currentDirectory = givenCurrentDirectory
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
@@ -15,7 +14,8 @@ function getPATH(currentDirectory: ?string = null): string {
   return entries.join(SEPARATOR)
 }
 
-async function getPATHAsync(currentDirectory: ?string = null): Promise<string> {
+async function getPATHAsync(givenCurrentDirectory: ?string = null): Promise<string> {
+  let currentDirectory = givenCurrentDirectory
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
