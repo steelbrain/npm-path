@@ -5,6 +5,7 @@ spec/*
 [include]
 
 [libs]
+decls
 
 [options]
 module.system=node
