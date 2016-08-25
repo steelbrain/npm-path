@@ -3,7 +3,7 @@
 import Path from 'path'
 import { find, findAsync } from './helpers'
 
-function getPATH(givenCurrentDirectory: ?string = null): string {
+function getPath(givenCurrentDirectory: ?string = null): string {
   let currentDirectory = givenCurrentDirectory
   if (!currentDirectory) {
     currentDirectory = process.cwd()
@@ -11,7 +11,7 @@ function getPATH(givenCurrentDirectory: ?string = null): string {
   return find(currentDirectory, Path.join('node_modules', '.bin')) || ''
 }
 
-async function getPATHAsync(givenCurrentDirectory: ?string = null): Promise<string> {
+async function getPathAsync(givenCurrentDirectory: ?string = null): Promise<string> {
   let currentDirectory = givenCurrentDirectory
   if (!currentDirectory) {
     currentDirectory = process.cwd()
@@ -23,5 +23,5 @@ function clearCache() {
   findAsync.__sb_cache = {}
 }
 
-export default getPATH
-export { getPATH, getPATHAsync, clearCache }
+export default getPath
+export { getPath, getPathAsync, clearCache }
