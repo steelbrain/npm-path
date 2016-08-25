@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "sb-memoize": "^1.0.2",
-    "sb-promisify": "^1.2.0"
+    "sb-promisify": "^2.0.0"
   }
 }

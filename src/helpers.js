@@ -7,23 +7,22 @@ import promisify from 'sb-promisify'
 
 const access = promisify(FS.access)
 
-function find(directory: string, name: string | Array<string>): Array<string> {
+function find(directory: string, name: string | Array<string>): ?string {
   const names = [].concat(name)
   const chunks = directory.split(Path.sep)
-  const matched = []
 
   while (chunks.length) {
     let currentDir = chunks.join(Path.sep)
     if (currentDir === '') {
       currentDir = Path.resolve(directory, '/')
     }
-    for (const fileName of names) {
+    for (let i = 0, length = names.length; i < length; ++i) {
+      const fileName = names[i]
       const filePath = Path.join(currentDir, fileName)
 
       try {
         FS.accessSync(filePath, FS.R_OK)
-        matched.push(filePath)
-        break
+        return filePath
       } catch (_) {
         // Do nothing
       }
@@ -31,25 +30,24 @@ function find(directory: string, name: string | Array<string>): Array<string> {
     chunks.pop()
   }
 
-  return matched
+  return null
 }
 
-async function findAsync(directory: string, name: string | Array<string>): Promise<Array<string>> {
+async function findAsync(directory: string, name: string | Array<string>): Promise<?string> {
   const names = [].concat(name)
   const chunks = directory.split(Path.sep)
-  const matched = []
 
   while (chunks.length) {
     let currentDir = chunks.join(Path.sep)
     if (currentDir === '') {
       currentDir = Path.resolve(directory, '/')
     }
-    for (const fileName of names) {
+    for (let i = 0, length = names.length; i < length; ++i) {
+      const fileName = names[i]
       const filePath = Path.join(currentDir, fileName)
       try {
         await access(filePath, FS.R_OK)
-        matched.push(filePath)
-        break
+        return filePath
       } catch (_) {
         // Do nothing
       }
@@ -57,7 +55,7 @@ async function findAsync(directory: string, name: string | Array<string>): Promi
     chunks.pop()
   }
 
-  return matched
+  return null
 }
 
 module.exports = {

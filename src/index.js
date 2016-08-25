@@ -3,15 +3,12 @@
 import Path from 'path'
 import { find, findAsync } from './helpers'
 
-const SEPARATOR = process.platform === 'win32' ? ';' : ':'
-
 function getPATH(givenCurrentDirectory: ?string = null): string {
   let currentDirectory = givenCurrentDirectory
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
-  const entries = find(currentDirectory, [Path.join('node_modules', '.bin')])
-  return entries.join(SEPARATOR)
+  return find(currentDirectory, Path.join('node_modules', '.bin')) || ''
 }
 
 async function getPATHAsync(givenCurrentDirectory: ?string = null): Promise<string> {
@@ -19,8 +16,7 @@ async function getPATHAsync(givenCurrentDirectory: ?string = null): Promise<stri
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
-  const entries = await findAsync(currentDirectory, [Path.join('node_modules', '.bin')])
-  return entries.join(SEPARATOR)
+  return await findAsync(currentDirectory, Path.join('node_modules', '.bin')) || ''
 }
 
 module.exports = getPATH
