@@ -18,10 +18,10 @@ async function getPATHAsync(givenCurrentDirectory: ?string = null): Promise<stri
   }
   return await findAsync(currentDirectory, Path.join('node_modules', '.bin')) || ''
 }
-
-module.exports = getPATH
-module.exports.async = getPATHAsync
-module.exports.clearCache = function() {
+function clearCache() {
   find.__sb_cache = {}
   findAsync.__sb_cache = {}
 }
+
+export default getPATH
+export { getPATH, getPATHAsync, clearCache }

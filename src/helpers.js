@@ -7,7 +7,7 @@ import promisify from 'sb-promisify'
 
 const access = promisify(FS.access)
 
-function find(directory: string, name: string | Array<string>): ?string {
+function findItem(directory: string, name: string | Array<string>): ?string {
   const names = [].concat(name)
   const chunks = directory.split(Path.sep)
 
@@ -33,7 +33,7 @@ function find(directory: string, name: string | Array<string>): ?string {
   return null
 }
 
-async function findAsync(directory: string, name: string | Array<string>): Promise<?string> {
+async function findItemAsync(directory: string, name: string | Array<string>): Promise<?string> {
   const names = [].concat(name)
   const chunks = directory.split(Path.sep)
 
@@ -58,7 +58,5 @@ async function findAsync(directory: string, name: string | Array<string>): Promi
   return null
 }
 
-module.exports = {
-  find: memoize(find),
-  findAsync: memoize(findAsync, { async: true }),
-}
+export const find = memoize(findItem)
+export const findAsync = memoize(findItemAsync, { async: true })
