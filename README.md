@@ -12,12 +12,12 @@ npm install --save sb-npm-path
 ## API
 
 ```js
-function getPATH(rootDirectory?: string): string
-function getPATHAsync(rootDirectory?: string): Promise<string>
+function getPath(rootDirectory?: string): string
+function getPathAsync(rootDirectory?: string): Promise<string>
 function clearCache(): void
 
-export default getPATH
-export { clearCache, getPATHAsync as async }
+export default getPath
+export { getPath, getPathAsync, clearCache }
 ```
 
 ## Examples
