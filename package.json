@@ -27,7 +27,6 @@
     "flow-bin": "^0.31.1"
   },
   "dependencies": {
-    "sb-memoize": "^1.0.1",
     "sb-promisify": "^1.2.0"
   }
 }
