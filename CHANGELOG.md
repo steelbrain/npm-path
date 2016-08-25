@@ -1,7 +1,6 @@
-## 1.1.0
+## 1.0.2
 
-- Remove an unnecessary dependency
-- Use babel style exports (backward compatible)
+- Upgrade babel version to remove flow pragma from compiled files (fixes flow warnings in modules that depend on this)
 
 ## 1.0.1
 

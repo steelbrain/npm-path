@@ -2,6 +2,7 @@
 
 import Path from 'path'
 import FS from 'fs'
+import memoize from 'sb-memoize'
 import promisify from 'sb-promisify'
 
 const access = promisify(FS.access)
@@ -59,5 +60,7 @@ async function findAsync(directory: string, name: string | Array<string>): Promi
   return matched
 }
 
-export { find, findAsync }
-export default { find, findAsync }
+module.exports = {
+  find: memoize(find),
+  findAsync: memoize(findAsync, { async: true }),
+}
