@@ -22,12 +22,12 @@
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-plugin-for-of-efficient": "^1.0.0",
-    "babel-preset-steelbrain": "^4.0.1",
-    "eslint-config-steelbrain": "^1.0.4",
-    "flow-bin": "^0.31.1"
+    "babel-preset-steelbrain": "^5.0.2",
+    "eslint-config-steelbrain": "^2.0.0",
+    "flow-bin": "^0.42.0"
   },
   "dependencies": {
-    "sb-memoize": "^1.0.2",
+    "sb-memoize": "^2.1.0",
     "sb-promisify": "^2.0.1"
   }
 }
