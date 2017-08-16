@@ -24,7 +24,7 @@
     "babel-plugin-for-of-efficient": "^1.0.0",
     "babel-preset-steelbrain": "^5.0.2",
     "eslint-config-steelbrain": "^3.0.1",
-    "flow-bin": "^0.46.0"
+    "flow-bin": "^0.53.0"
   },
   "dependencies": {
     "sb-memoize": "^2.1.0",
