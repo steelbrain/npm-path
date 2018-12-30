@@ -4,7 +4,7 @@
   "description": "Get PATH of your node runtime and modules",
   "main": "lib/index.js",
   "scripts": {
-    "test": "(apm test) && (flow check) && (eslint . )",
+    "test": "(ava spec/*-spec.js) && (flow check) && (eslint . )",
     "prepare": "npm run compile",
     "compile": "sb-babel-cli src -o lib",
     "watch": "npm run compile -- --watch"
@@ -23,6 +23,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-flow": "^7.0.0",
+    "ava": "^1.0.1",
     "eslint-config-steelbrain": "^6.0.0",
     "flow-bin": "^0.89.0",
     "sb-babel-cli": "^1.0.2"
