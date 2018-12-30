@@ -1,7 +1,6 @@
 NPM-Path
 =========
 
-
 NPM-Path is a helper node module that gives you `PATH` value including all the locally installed npm bins.
 
 ## Installation
