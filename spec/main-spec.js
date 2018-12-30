@@ -1,13 +1,13 @@
 /* @flow */
 
-import Path from 'path'
-import { getPath, getPathAsync } from '../'
+import path from 'path'
+import { getPath, getPathAsync } from '..'
 
 describe('npm-path', function() {
-  const DIR = Path.join(__dirname, 'fixtures')
-  const DEEP_DIR = Path.join(DIR, 'test')
-  const BIN_DIR = Path.join(DIR, 'node_modules', '.bin')
-  const DEEP_BIN_DIR = Path.join(DEEP_DIR, 'node_modules', '.bin')
+  const DIR = path.join(__dirname, 'fixtures')
+  const DEEP_DIR = path.join(DIR, 'test')
+  const BIN_DIR = path.join(DIR, 'node_modules', '.bin')
+  const DEEP_BIN_DIR = path.join(DEEP_DIR, 'node_modules', '.bin')
 
   describe('::getPath', function() {
     it('works', function() {

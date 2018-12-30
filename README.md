@@ -1,7 +1,6 @@
 NPM-Path
 =========
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/steelbrain/npm-path.svg)](https://greenkeeper.io/)
 
 NPM-Path is a helper node module that gives you `PATH` value including all the locally installed npm bins.
 
