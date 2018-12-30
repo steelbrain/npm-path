@@ -27,8 +27,5 @@
     "flow-bin": "^0.89.0",
     "sb-babel-cli": "^1.0.2"
   },
-  "dependencies": {
-    "sb-memoize": "^2.1.0",
-    "sb-promisify": "^2.0.1"
-  }
+  "dependencies": {}
 }

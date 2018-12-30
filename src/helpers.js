@@ -2,10 +2,14 @@
 
 import path from 'path'
 import fs from 'fs'
-import memoize from 'sb-memoize'
-import promisify from 'sb-promisify'
 
-const access = promisify(fs.access)
+function accessAsync(filePath: string): Promise<boolean> {
+  return new Promise(function(resolve) {
+    fs.access(filePath, fs.R_OK, function(err) {
+      resolve(err === null)
+    })
+  })
+}
 
 function findItem(directory: string, name: string | Array<string>): ?string {
   const names = [].concat(name)
@@ -45,12 +49,9 @@ async function findItemAsync(directory: string, name: string | Array<string>): P
     for (let i = 0, { length } = names; i < length; ++i) {
       const fileName = names[i]
       const filePath = path.join(currentDir, fileName)
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        await access(filePath, fs.R_OK)
+      // eslint-disable-next-line no-await-in-loop
+      if (await accessAsync(filePath)) {
         return filePath
-      } catch (_) {
-        // Do nothing
       }
     }
     chunks.pop()
@@ -59,5 +60,5 @@ async function findItemAsync(directory: string, name: string | Array<string>): P
   return null
 }
 
-export const find = memoize(findItem)
-export const findAsync = memoize(findItemAsync, { async: true })
+export const find = findItem
+export const findAsync = findItemAsync
