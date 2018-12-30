@@ -4,7 +4,6 @@ lib/*
 [include]
 
 [libs]
-decls
 
 [options]
 module.system=node
