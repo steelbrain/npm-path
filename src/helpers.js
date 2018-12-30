@@ -1,27 +1,31 @@
 /* @flow */
 
-import Path from 'path'
-import FS from 'fs'
-import memoize from 'sb-memoize'
-import promisify from 'sb-promisify'
+import path from 'path'
+import fs from 'fs'
 
-const access = promisify(FS.access)
+function accessAsync(filePath: string): Promise<boolean> {
+  return new Promise(function(resolve) {
+    fs.access(filePath, fs.R_OK, function(err) {
+      resolve(err === null)
+    })
+  })
+}
 
 function findItem(directory: string, name: string | Array<string>): ?string {
   const names = [].concat(name)
-  const chunks = directory.split(Path.sep)
+  const chunks = directory.split(path.sep)
 
   while (chunks.length) {
-    let currentDir = chunks.join(Path.sep)
+    let currentDir = chunks.join(path.sep)
     if (currentDir === '') {
-      currentDir = Path.resolve(directory, '/')
+      currentDir = path.resolve(directory, '/')
     }
-    for (let i = 0, length = names.length; i < length; ++i) {
+    for (let i = 0, { length } = names; i < length; ++i) {
       const fileName = names[i]
-      const filePath = Path.join(currentDir, fileName)
+      const filePath = path.join(currentDir, fileName)
 
       try {
-        FS.accessSync(filePath, FS.R_OK)
+        fs.accessSync(filePath, fs.R_OK)
         return filePath
       } catch (_) {
         // Do nothing
@@ -35,21 +39,19 @@ function findItem(directory: string, name: string | Array<string>): ?string {
 
 async function findItemAsync(directory: string, name: string | Array<string>): Promise<?string> {
   const names = [].concat(name)
-  const chunks = directory.split(Path.sep)
+  const chunks = directory.split(path.sep)
 
   while (chunks.length) {
-    let currentDir = chunks.join(Path.sep)
+    let currentDir = chunks.join(path.sep)
     if (currentDir === '') {
-      currentDir = Path.resolve(directory, '/')
+      currentDir = path.resolve(directory, '/')
     }
-    for (let i = 0, length = names.length; i < length; ++i) {
+    for (let i = 0, { length } = names; i < length; ++i) {
       const fileName = names[i]
-      const filePath = Path.join(currentDir, fileName)
-      try {
-        await access(filePath, FS.R_OK)
+      const filePath = path.join(currentDir, fileName)
+      // eslint-disable-next-line no-await-in-loop
+      if (await accessAsync(filePath)) {
         return filePath
-      } catch (_) {
-        // Do nothing
       }
     }
     chunks.pop()
@@ -58,5 +60,5 @@ async function findItemAsync(directory: string, name: string | Array<string>): P
   return null
 }
 
-export const find = memoize(findItem)
-export const findAsync = memoize(findItemAsync, { async: true })
+export const find = findItem
+export const findAsync = findItemAsync

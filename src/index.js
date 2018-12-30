@@ -16,12 +16,8 @@ async function getPathAsync(givenCurrentDirectory: ?string = null): Promise<stri
   if (!currentDirectory) {
     currentDirectory = process.cwd()
   }
-  return await findAsync(currentDirectory, Path.join('node_modules', '.bin')) || ''
-}
-function clearCache() {
-  find.__sb_cache = {}
-  findAsync.__sb_cache = {}
+  return (await findAsync(currentDirectory, Path.join('node_modules', '.bin'))) || ''
 }
 
 export default getPath
-export { getPath, getPathAsync, clearCache }
+export { getPath, getPathAsync }

@@ -4,10 +4,10 @@
   "description": "Get PATH of your node runtime and modules",
   "main": "lib/index.js",
   "scripts": {
-    "test": "(apm test) && (flow check) && (eslint . )",
-    "clean": "rm -rf lib",
-    "compile": "npm run clean && babel src --out-dir lib",
-    "watch": "npm run clean && babel src --out-dir lib --watch"
+    "test": "(ava spec/*-spec.js) && (flow check) && (eslint . )",
+    "prepare": "npm run compile",
+    "compile": "sb-babel-cli src -o lib",
+    "watch": "npm run compile -- --watch"
   },
   "repository": {
     "type": "git",
@@ -20,14 +20,13 @@
   },
   "homepage": "https://github.com/steelbrain/npm-path#readme",
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-plugin-for-of-efficient": "^1.0.0",
-    "babel-preset-steelbrain": "^5.0.2",
-    "eslint-config-steelbrain": "^3.0.1",
-    "flow-bin": "^0.75.0"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-flow": "^7.0.0",
+    "ava": "^1.0.1",
+    "eslint-config-steelbrain": "^6.0.0",
+    "flow-bin": "^0.89.0",
+    "sb-babel-cli": "^1.0.2"
   },
-  "dependencies": {
-    "sb-memoize": "^2.1.0",
-    "sb-promisify": "^2.0.1"
-  }
+  "dependencies": {}
 }

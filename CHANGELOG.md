@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Removes built-in memoization. Consumers must implement memoization on their end instead.
+
 ## 2.0.0
 
 - Rename methods ( API BREAKING )
