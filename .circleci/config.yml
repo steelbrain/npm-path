@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: node:10-jessie
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore NPM Package Cache
+          keys:
+            - npm-packages-{{ .Branch }}-{{ checksum "package-json.lock" }}
+            - npm-packages-{{ .Branch }}
+            - npm-packages-master
+            - npm-packages-
+      - run:
+          name: Packager Version
+          command: npm --version
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          name: Save NPM Package Cache
+          key: npm-packages-{{ .Branch }}-{{ checksum "package-json.lock" }}
+          paths:
+            - node_modules/
+  test:
+    working_directory: ~/repo
+    docker:
+      - image: node:10-jessie
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore NPM Package Cache
+          key: npm-packages-{{ .Branch }}-{{ checksum "package-json.lock" }}
+      - run:
+          name: Test
+          command: npm run test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
