@@ -1,6 +1,6 @@
 {
   "name": "sb-npm-path",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Get PATH of your node runtime and modules",
   "main": "lib/index.js",
   "scripts": {
